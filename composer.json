@@ -1,0 +1,46 @@
+{
+  "name": "susina/utils",
+  "description": "PHP utility classes and functions",
+  "license": "MIT",
+  "type": "library",
+  "minimum-stability": "stable",
+  "autoload": {
+    "psr-4": {
+      "Susina\\Utils\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Susina\\Utils\\Tests\\": "tests/"
+    }
+  },
+  "require": {
+    "php": ">=8.5",
+    "ext-mbstring": "*"
+  },
+  "require-dev": {
+    "mikey179/vfsstream": "^1.6"
+  },
+  "scripts": {
+    "analytics": "php tools/phpstan analyze",
+    "check": [
+      "@cs:fix",
+      "@test",
+      "@analytics"
+    ],
+    "coverage:html": "@test --coverage-html coverage/",
+    "coverage:clover": "@test --coverage-clover clover.xml",
+    "cs:check": "php tools/php-cs-fixer fix -v --diff --dry-run",
+    "cs:fix": "php tools/php-cs-fixer fix -v --diff",
+    "test": "php tools/phpunit"
+  },
+  "scripts-descriptions": {
+    "analytics": "Run static analysis tool",
+    "check": "Perform all tests and analysis, required before submitting a pull request",
+    "cs:check": "Run code style analysis, without fixing errors",
+    "cs:fix": "Run code style analysis and fix errors",
+    "coverage:html": "Create a code coverage report in html format, into the `coverage/` directory",
+    "coverage:clover": "Create a code coverage report in xml format, into the `clover.xml` file",
+    "test": "Run the test suite"
+  }
+}
