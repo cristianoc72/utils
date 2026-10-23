@@ -13,7 +13,21 @@ declare(strict_types=1);
 namespace Susina\Utils;
 
 /**
- * Utility methods to manipulate strings, not included in PHP functions list.
+ * Utility methods to manipulate strings, not included into the standard PHP functions list.
+ *
+ * This class contains static methods to manipulate strings, such as converting
+ * to kebab-case, snake_case, StudlyCase, and camelCase.
+ * It also provides methods to ensure that a string starts or ends with a specific character.
+ *
+ * All the static methods are intended to be used with the new [PHP 8.5 pipe operator](https://www.php.net/manual/en/language.operators.functional.php),
+ * allowing for a more functional programming style.
+ *
+ * If you prefer the object-oriented fluent api approach, you can use the `Text` class, included into
+ * [phootwork/lang](https://github.com/phootwork/lang) package, or the `UnicodeString` class,
+ * from [symfony/string](https://github.com/symfony/string) package, instead.
+ *
+ * @author Cristiano Cinotti <cristianocinotti@gmail.com>
+ * @license MIT
  */
 final class StringUtils
 {
@@ -21,8 +35,8 @@ final class StringUtils
      * Collapses multiple consecutive whitespace characters into a single space.
      *
      * @static
-     * @param string $toCollapse
-     * @return string
+     * @param string $toCollapse The string to collapse.
+     * @return string The collapsed string.
      * @throws \RuntimeException If an error occurs while collapsing the string.
      */
     public static function collapseSpaces(string $toCollapse): string
@@ -33,13 +47,17 @@ final class StringUtils
     /**
      * Convert this string into kebab-case. Numbers are considered as part of its previous piece.
      *
-     * <code>
-     * $var = new Text('myOwnVariable');<br>
-     * $var->toKebabCase(); // my-own-variable
+     * In example:
      *
-     * $var = new Text('myTest3Variable');<br>
-     * $var->toKebabCase(); // my-test3-variable
-     * </code>
+     * ```php
+     * <?php
+     *
+     *  use Susina\Utils\StringUtils;
+     *
+     *  $var = StringUtils::toKebabCase('myOwnVariable'); // my-own-variable
+     *
+     *  $var = StringUtils::toKebabCase('myTest3Variable'); // my-test3-variable
+     * ```
      *
      * @static
      * @param string $text
@@ -59,13 +77,17 @@ final class StringUtils
     /**
      * Converts this string into snake_case. Numbers are considered as part of its previous piece.
      *
-     * <code>
-     * $var = new Text('myOwnVariable');<br>
-     * $var->toSnakeCase(); // my_own_variable
+     * In example:
      *
-     * $var = new Text('myTest3Variable');<br>
-     * $var->toSnakeCase(); // my_test3_variable
-     * </code>
+     * ```php
+     * <?php
+     *
+     *  use Susina\Utils\StringUtils;
+     *
+     *  $var = StringUtils::toSnakeCase('myOwnVariable'); // my_own_variable
+     *
+     *  $var = StringUtils::toSnakeCase('myTest3Variable'); // my_test3_variable
+     * ```
      *
      * @static
      * @param string $text
@@ -79,13 +101,17 @@ final class StringUtils
     /**
      * Converts this string into StudlyCase. Numbers are considered as part of its previous piece.
      *
-     * <code>
-     * $var = new Text('my_own_variable');<br>
-     * $var->toStudlyCase(); // MyOwnVariable
+     * In example:
      *
-     * $var = new Text('my_test3_variable');<br>
-     * $var->toStudlyCase(); // MyTest3Variable
-     * </code>
+     * ```php
+     * <?php
+     *
+     *  use Susina\Utils\StringUtils;
+     *
+     *  $var = StringUtils::toStudlyCase('my_own_variable'); // MyOwnVariable
+     *
+     *  $var = StringUtils::toStudlyCase('my_test3_variable'); // MyTest3Variable
+     * ```
      *
      * @static
      * @param string $text
@@ -105,6 +131,8 @@ final class StringUtils
     /**
      * Alias for toStudlyCase() method.
      *
+     * StudlyCase is also known as PascalCase, and this method is provided for convenience.
+     *
      * @static
      * @param string $text
      * @return string
@@ -117,13 +145,17 @@ final class StringUtils
     /**
      * Converts this string into camelCase. Numbers are considered as part of its previous piece.
      *
-     * <code>
-     * $var = new Text('my_own_variable');<br>
-     * $var->toCamelCase(); // myOwnVariable
+     * In example:
      *
-     * $var = new Text('my_test3_variable');<br>
-     * $var->toCamelCase(); // myTest3Variable
-     * </code>
+     * ```php
+     * <?php
+     *
+     *  use Susina\Utils\StringUtils;
+     *
+     *  $var = StringUtils::toCamelCase('my_own_variable'); // myOwnVariable
+     *
+     *  $var = StringUtils::toCamelCase('my_test3_variable'); // myTest3Variable
+     * ```
      *
      * @static
      * @param string $text
@@ -137,6 +169,20 @@ final class StringUtils
     /**
      * Ensure that the `$root` string ends with `$char` character/string.
      *
+     * In example:
+     *
+     * ```php
+     * <?php
+     *
+     *  use Susina\Utils\StringUtils;
+     *
+     *
+     *  $var = StringUtils::ensureEnd('my/personal/path', '/'); // my/personal/path/ added the trailing slash
+     *
+     *  $var = StringUtils::ensureEnd('my/personal/path/', '/'); // my/personal/path/ no change, already ends with slash
+     *
+     * ```
+     *
      * @static
      * @param string $root The string to manipulate.
      * @param string $char The char the given string should end with
@@ -149,6 +195,19 @@ final class StringUtils
 
     /**
      * Ensure that the `$root` string starts with `$char` character/string.
+     *
+     * In example:
+     *
+     * ```php
+     * <?php
+     *
+     *  use Susina\Utils\StringUtils;
+     *
+     *
+     *  $var = StringUtils::ensureStart('my/personal/path', '/'); // /my/personal/path added the leading slash
+     *
+     *  $var = StringUtils::ensureStart('/my/personal/path', '/'); // /my/personal/path no change, already starts with slash
+     * ```
      *
      * @static
      * @param string $root The string to manipulate.

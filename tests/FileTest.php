@@ -153,6 +153,15 @@ class FileTest extends VfsTestCase
         $this->assertSame('/var/www/html/index.php', $file->getPathname());
     }
 
+    public function testRelativeMethodsOnAbsolutePathname(): void
+    {
+        $file = new File('/var/www/html/index.php');
+
+        $this->assertSame('', $file->getRelativePath());
+        $this->assertSame('/var/www/html/index.php', $file->getRelativePathname());
+        $this->assertSame('/var/www/html/index.php', $file->getPathname());
+    }
+
     public function testMakeRelativeTo(): void
     {
         $file = new File('/var/www/html/index.php');
