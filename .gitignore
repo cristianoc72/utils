@@ -3,6 +3,8 @@ clover.xml
 composer.phar
 composer.lock
 phpunit.xml
+.phpdoc/build
+.phpdoc/cache
 coverage/
 vendor/
 tools/

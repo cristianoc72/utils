@@ -1,0 +1,24 @@
+name: Build and deploy documentation
+on:
+  release:
+    types: [published]
+jobs:
+  build_documentation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+      - name: Setup PHP, with composer and extensions
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.5"
+          coverage: none
+      - name: Install tools
+        uses: ngmy/phive-install-action@master
+      - name: Build the doumentation
+        run: composer docs:build
+      - name: Deploy documentation to Github Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./phpdoc/build
