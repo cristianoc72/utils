@@ -11,7 +11,7 @@ Getting Started
 .. _ensureStart: classes/Susina-Utils-StringUtils.html#method_ensureStart
 .. _ensureEnd: classes/Susina-Utils-StringUtils.html#method_ensureEnd
 .. _collapseSpaces: classes/Susina-Utils-StringUtils.html#method_collapseSpaces     
-.. _makeRelative: classes/Susina-Utils-File.html#method_makeRelative
+.. _makeRelative: classes/Susina-Utils-File.html#method_makeRelativeTo
 .. _constructor: classes/Susina-Utils-File.html#method__construct
 .. _isAbsolute: classes/Susina-Utils-File.html#method_isAbsolute
 .. _getContents: classes/Susina-Utils-File.html#method_getContents
@@ -178,7 +178,7 @@ Let's get a look in detail.
 Relative paths
 ^^^^^^^^^^^^^^
 
-Relative paths can be set into the `constructor`_ or using the `makeRelative`_ method.
+Relative paths can be set into the `constructor`_ or using the `makeRelativeTo`_ method.
 
 The class constructor accepts two parameters: the *file path* and the *relative path*. If the relative path is not set, the file path is considered relative 
 to the root directory, which is the same behavior of the base `SplFileInfo::_construct() <https://www.php.net/manual/en/splfileinfo.construct.php>`_.
@@ -259,7 +259,7 @@ instead of returning ``false`` as the standard PHP functions do.
 
 .. note::
     The `getContents`_ method reads the **full** content of the file. If you want to read only a certain number
-    of bytes, you can use the native `\SplObject::fread() <https://www.php.net/manual/en/splfileobject.fread.php>`_ instead.
+    of bytes, you can use the native `\SplFileObject::fread() <https://www.php.net/manual/en/splfileobject.fread.php>`_ instead.
 
 
 Example 1) read the full content of the file:
