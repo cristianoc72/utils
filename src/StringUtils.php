@@ -12,6 +12,9 @@ declare(strict_types=1);
 
 namespace Susina\Utils;
 
+use Susina\Utils\Inflector\InflectorInterface;
+use Susina\Utils\Inflector\SimpleInflector;
+
 /**
  * Utility methods to manipulate strings, not included into the standard PHP functions list.
  *
@@ -217,5 +220,41 @@ final class StringUtils
     public static function ensureStart(string $root, string $char): string
     {
         return str_starts_with($root, $char) ? $root : $char . $root;
+    }
+
+    /**
+     * Pluralize a string.
+     *
+     * This method uses `Susina\Utils\Inflector\SimpleInflector` by default.
+     * *SimpleInflector* is a standard English pluralizer, if you need to use an inflector supporting other languages
+     * you can pass an instance of a class implementing `Susina\Utils\Inflector\InflectorInterface` methods as second argument.
+     *
+     * @param string $root The string to pluralize.
+     * @param InflectorInterface|null $inflector An instance of an inflector class that implements `pluralize` and `singularize` methods.
+     * @return string The pluralized form of the given string.
+     */
+    public static function pluralize(string $root, ?InflectorInterface $inflector = null): string
+    {
+        $inflector = $inflector ?? new SimpleInflector();
+
+        return $inflector->pluralize($root);
+    }
+
+    /**
+     * Singularize a string.
+     *
+     * This method uses Susina\Utils\Inflector\SimpleInflector by default.
+     * SimpleInflector is a standard English singularizer, if you need to use an inflector supporting other languages
+     * you can pass an instance of a class implementing `pluralize` and `singularize` methods as second argument.
+     *
+     * @param string $root The string to singularize.
+     * @param InflectorInterface|null $inflector An instance of an inflector class that implements `pluralize` and `singularize` methods.
+     * @return string The singularized form of the given string.
+     */
+    public static function singularize(string $root, ?InflectorInterface $inflector = null): string
+    {
+        $inflector = $inflector ?? new SimpleInflector();
+
+        return $inflector->singularize($root);
     }
 }
