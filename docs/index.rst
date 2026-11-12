@@ -1,6 +1,7 @@
 .. toctree::
 
-   usage
+   usage/index
+   howto
    contributing
    license
 
