@@ -17,10 +17,11 @@ composer require susina/utils
 
 ## Usage
 
-The library offers 2 classes:
+The library offers 3 classes:
 
 - `Susina\Utils\StringUtils`: containing some useful (static) functions.
 - `Susina\Utils\File`: a class extending the standard [SplFileinfo](https://www.php.net/manual/en/class.splfileinfo.php), supporting relative paths and easy read-write-append contents.
+- `Susina\Utils\Inflector\SimpleInflector`: a class to pluralize/singularize words.
 
 For a detailed description and examples, please see the [documentation site](https://susina.github.io/utils).
 
